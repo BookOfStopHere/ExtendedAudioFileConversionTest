@@ -8,11 +8,22 @@
 
 #import "ViewController.h"
 #import "ExtendedAudioFileConvertOperation.h"
+#import "GCDWebUploader.h"
+#include <net/if_dl.h>
+#include <ifaddrs.h>
+#include <net/if.h>
+#include <netdb.h>
+#include <arpa/inet.h>
+#import "GCDWebServer.h"
 
 @import AVFoundation;
 @import AudioToolbox;
 
 @interface ViewController () <ExtendedAudioFileConvertOperationDelegate, AVAudioPlayerDelegate>
+{
+    GCDWebUploader *webUploader;
+    GCDWebServer *localserver;
+}
 
 // MARK: Properties
 
@@ -39,6 +50,7 @@
 @property (assign, nonatomic) AudioFormatID outputFormat;
 
 @property (assign, nonatomic) Float64 sampleRate;
+@property (assign, nonatomic) float rate;
 
 @property (nonatomic, strong) ExtendedAudioFileConvertOperation *operation;
 
@@ -48,19 +60,35 @@
 
 @implementation ViewController
 
+
+- (void)startServer
+{
+    NSString *mp4path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES) firstObject];
+    webUploader = [[GCDWebUploader alloc] initWithUploadDirectory:mp4path];
+    //    [webUploader startWithPort:8080 bonjourName:nil];
+    [webUploader start];
+    
+    
+    
+    localserver = [[GCDWebServer alloc] init];
+    [localserver addGETHandlerForBasePath:@"/" directoryPath:NSHomeDirectory() indexFilename:nil cacheAge:3600 allowRangeRequests:YES];
+    [localserver startWithPort:8080 bonjourName:nil];
+}
+
 // MARK: View Life Cycle.
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    [self startServer];
     // Create the URLs to be used for the source.
-    NSString *sourcePath = [[NSBundle mainBundle] pathForResource:@"sourcePCM" ofType:@"aif"];
+//    NSString *sourcePath = [[NSBundle mainBundle] pathForResource:@"sourcePCM" ofType:@"aif"];
+    NSString *sourcePath = [[NSBundle mainBundle] pathForResource:@"ssjs" ofType:@"mp3"];
     self.sourceURL = [NSURL fileURLWithPath:sourcePath];
     
     // Set the default values.
     self.outputFormat = kAudioFormatMPEG4AAC;
     self.sampleRate = 0;
-    
+    self.rate = 1.0;
     // Update fileInfo label.
     [self updateSourceFileInfo];
     
@@ -74,6 +102,26 @@
 
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:AVAudioSessionInterruptionNotification object:[AVAudioSession sharedInstance]];
+}
+- (IBAction)selectRate:(UISegmentedControl *)sender {
+    
+    switch (sender.selectedSegmentIndex) {
+        case 0:
+            self.rate = 0.33;
+            break;
+        case 1:
+self.rate = 0.5;
+            break;
+        case 2:
+self.rate = 1.0;
+            break;
+        case 3:
+self.rate = 2.0;
+            break;
+        case 4:
+self.rate = 3.0;
+            break;
+    }
 }
 
 // MARK: Target-Action
@@ -148,9 +196,9 @@
     self.outputSampleRateSelector.enabled = NO;
     
     self.operation = [[ExtendedAudioFileConvertOperation alloc] initWithSourceURL:self.sourceURL destinationURL:self.destinationURL sampleRate:self.sampleRate outputFormat:self.outputFormat];
-    
+    self.operation.xrate = self.rate;
     self.operation.delegate = self;
-    
+    [NSFileManager.defaultManager removeItemAtPath:self.destinationURL.path error:nil];
     __weak __typeof__(self) weakSelf = self;
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
@@ -175,8 +223,9 @@
     
     NSArray  *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
-    NSString *destinationFilePath = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"Output%@.caf", formatString]];
-    
+    NSString *destinationFilePath = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"Output%@.aac", formatString]];
+    destinationFilePath = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"Output.m4a"]];
+    [[NSFileManager defaultManager] removeItemAtPath:destinationFilePath error:nil];
     self.destinationURL = [NSURL fileURLWithPath:destinationFilePath];
     [self updateDestinationFileInfo];
 }
@@ -233,7 +282,7 @@
     NSFileManager *fileManager = [NSFileManager defaultManager];
     
     if ([fileManager fileExistsAtPath:self.destinationURL.path]) {
-        [fileManager removeItemAtPath:self.destinationURL.path error:nil];
+//        [fileManager removeItemAtPath:self.destinationURL.path error:nil];
         
         [self updateDestinationFileInfo];
     }

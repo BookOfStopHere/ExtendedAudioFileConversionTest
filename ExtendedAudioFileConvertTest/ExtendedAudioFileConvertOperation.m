@@ -7,8 +7,20 @@
  */
 
 #import "ExtendedAudioFileConvertOperation.h"
+#import "QNXSoundTouch.h"
+#import <AVFoundation/AVFoundation.h>
+
 @import Darwin;
 @import AVFoundation;
+
+static inline int _swap32(int dwData)
+{
+    dwData = ((dwData >> 24) & 0x000000FF) |
+    ((dwData >> 8)  & 0x0000FF00) |
+    ((dwData << 8)  & 0x00FF0000) |
+    ((dwData << 24) & 0xFF000000);
+    return dwData;
+}
 
 #pragma mark- Convert
 // our own error code when we cannot continue from an interruption
@@ -24,6 +36,9 @@ typedef NS_ENUM(NSInteger, AudioConverterState) {
 };
 
 @interface ExtendedAudioFileConvertOperation ()
+{
+    char * sourceBuffer1;
+}
 
 // MARK: Properties
 
@@ -32,7 +47,7 @@ typedef NS_ENUM(NSInteger, AudioConverterState) {
 @property (nonatomic, strong) dispatch_semaphore_t semaphore;
 
 @property (nonatomic, assign) AudioConverterState state;
-
+@property (nonatomic, strong)  QNXSoundTouch *soundTouch;
 @end
 
 @implementation ExtendedAudioFileConvertOperation
@@ -47,7 +62,7 @@ typedef NS_ENUM(NSInteger, AudioConverterState) {
         _sampleRate = sampleRate;
         _outputFormat = outputFormat;
         _state = AudioConverterStateInitial;
-        
+        sourceBuffer1 = malloc(32768 * 2);
         _queue = dispatch_queue_create("com.example.apple-samplecode.ExtendedAudioFileConvertTest.ExtendedAudioFileConvertOperation.queue", DISPATCH_QUEUE_CONCURRENT);
         _semaphore = dispatch_semaphore_create(0);
         
@@ -61,12 +76,25 @@ typedef NS_ENUM(NSInteger, AudioConverterState) {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:AVAudioSessionInterruptionNotification object:[AVAudioSession sharedInstance]];
 }
 
+
+
+- (QNXSoundTouch *)soundTouch
+{
+    if(!_soundTouch)
+    {
+        _soundTouch = [QNXSoundTouch new];
+    }
+    return _soundTouch;
+}
+
+
+#define YMH 1
 - (void)main {
     [super main];
     
     // This should never run on the main thread.
     assert(![NSThread isMainThread]);
-    
+    int stackSize = [NSThread.currentThread stackSize];
     // Set the state to running.
     __weak __typeof__(self) weakSelf = self;
     
@@ -100,7 +128,7 @@ typedef NS_ENUM(NSInteger, AudioConverterState) {
         destinationFormat.mBitsPerChannel = 16;
         destinationFormat.mBytesPerPacket = destinationFormat.mBytesPerFrame = 2 * destinationFormat.mChannelsPerFrame;
         destinationFormat.mFramesPerPacket = 1;
-        destinationFormat.mFormatFlags = kLinearPCMFormatFlagIsPacked | kLinearPCMFormatFlagIsSignedInteger; // little-endian
+        destinationFormat.mFormatFlags = kLinearPCMFormatFlagIsPacked | kAudioFormatFlagIsSignedInteger; // little-endian
     } else {
         // This is a compressed format, need to set at least format, sample rate and channel fields for kAudioFormatProperty_FormatInfo.
         destinationFormat.mFormatID = self.outputFormat;
@@ -122,7 +150,7 @@ typedef NS_ENUM(NSInteger, AudioConverterState) {
     
     // Create the destination audio file.
     ExtAudioFileRef destinationFile = 0;
-    if (![self checkError:ExtAudioFileCreateWithURL((__bridge CFURLRef _Nonnull)(self.destinationURL), kAudioFileCAFType, &destinationFormat, NULL, kAudioFileFlags_EraseFile, &destinationFile) withErrorString:@"ExtAudioFileCreateWithURL failed!"]) {
+    if (![self checkError:ExtAudioFileCreateWithURL((__bridge CFURLRef _Nonnull)(self.destinationURL), kAudioFileM4AType, &destinationFormat, NULL, kAudioFileFlags_EraseFile, &destinationFile) withErrorString:@"ExtAudioFileCreateWithURL failed!"]) {
         return;
     }
     
@@ -134,10 +162,10 @@ typedef NS_ENUM(NSInteger, AudioConverterState) {
     AudioStreamBasicDescription clientFormat;
     if (self.outputFormat == kAudioFormatLinearPCM) {
         clientFormat = destinationFormat;
-    } else {
+    } else {//非PCM 需要设置kExtAudioFileProperty_ClientDataFormat  必须是kAudioFormatLinearPCM
         
-        clientFormat.mFormatID = kAudioFormatLinearPCM;
-        UInt32 sampleSize = sizeof(SInt32);
+        clientFormat.mFormatID = kAudioFormatLinearPCM;//必须设置线性 才能保证 mFramesPerPacket= 1
+        UInt32 sampleSize = sizeof(SInt16);
         clientFormat.mFormatFlags = kAudioFormatFlagIsSignedInteger | kAudioFormatFlagsNativeEndian | kAudioFormatFlagIsPacked;
         clientFormat.mBitsPerChannel = 8 * sampleSize;
         clientFormat.mChannelsPerFrame = sourceFormat.mChannelsPerFrame;
@@ -154,6 +182,7 @@ typedef NS_ENUM(NSInteger, AudioConverterState) {
         return;
     }
     
+    
     size = sizeof(clientFormat);
     if (![self checkError:ExtAudioFileSetProperty(destinationFile, kExtAudioFileProperty_ClientDataFormat, size, &clientFormat) withErrorString:@"Couldn't set the client format on the destination file!"]) {
         return;
@@ -165,6 +194,16 @@ typedef NS_ENUM(NSInteger, AudioConverterState) {
     size = sizeof(converter);
     if (![self checkError:ExtAudioFileGetProperty(destinationFile, kExtAudioFileProperty_AudioConverter, &size, &converter) withErrorString:@"Failed to get the Audio Converter from the destination file."]) {
         return;
+    }
+    else
+    {
+//        UInt32 outputBitRate = 192000;
+//        OSStatus err  = AudioConverterSetProperty(converter, kAudioConverterEncodeBitRate,
+//                                        sizeof(outputBitRate), &outputBitRate);
+//        // we have changed the converter, so we should do this in case
+//        // setting a converter property changes the converter used by ExtAF in some manner
+//        CFArrayRef config = NULL;
+//        err = ExtAudioFileSetProperty(destinationFile, kExtAudioFileProperty_ConverterConfig, sizeof(config), &config);
     }
     
     /*
@@ -209,23 +248,35 @@ typedef NS_ENUM(NSInteger, AudioConverterState) {
     }
     
     // Setup buffers
-    UInt32 bufferByteSize = 32768;
-    char sourceBuffer[bufferByteSize];
+    #define BUFF_SIZE           (512)
+    UInt32 bufferByteSize = destinationFormat.mFramesPerPacket/64;
+    //destinationFormat.mFramesPerPacket * clientFormat.mChannelsPerFrame;
     
+    //BUFF_SIZE;//32k
+//    float sourceBuffer[bufferByteSize];
+    SInt16 *sourceBuffer = (SInt16 *)malloc(sizeof(SInt16) * bufferByteSize);
+    UInt32 maxnumOfSamples = (bufferByteSize)/clientFormat.mChannelsPerFrame;
     /*
      keep track of the source file offset so we know where to reset the source for
      reading if interrupted and input was not consumed by the audio converter
      */
     SInt64 sourceFrameOffset = 0;
     
+    
+//    NSMutableArray *testArray = [NSMutableArray array];
+    //设置SoundTouch 参数
+    self.soundTouch.sampleRate    = clientFormat.mSampleRate;
+    self.soundTouch.numChannels = clientFormat.mChannelsPerFrame;
+    self.soundTouch.rate = self.xrate;
     // Do the read and write - the conversion is done on and by the write call.
     printf("Converting...\n");
     while (YES) {
         // Set up output buffer list.
+        memset(sourceBuffer, 0, bufferByteSize * sizeof(SInt16));
         AudioBufferList fillBufferList = {};
         fillBufferList.mNumberBuffers = 1;
         fillBufferList.mBuffers[0].mNumberChannels = clientFormat.mChannelsPerFrame;
-        fillBufferList.mBuffers[0].mDataByteSize = bufferByteSize;
+        fillBufferList.mBuffers[0].mDataByteSize = (bufferByteSize) * sizeof(SInt16);
         fillBufferList.mBuffers[0].mData = sourceBuffer;
         
         /*
@@ -235,9 +286,8 @@ typedef NS_ENUM(NSInteger, AudioConverterState) {
         UInt32 numberOfFrames = 0;
         if (clientFormat.mBytesPerFrame > 0) {
             // Handles bogus analyzer divide by zero warning mBytesPerFrame can't be a 0 and is protected by an Assert.
-            numberOfFrames = bufferByteSize / clientFormat.mBytesPerFrame;
+            numberOfFrames = bufferByteSize / clientFormat.mChannelsPerFrame;//clientFormat.mBytesPerFrame;
         }
-        
         if (![self checkError:ExtAudioFileRead(sourceFile, &numberOfFrames, &fillBufferList) withErrorString:@"ExtAudioFileRead failed!"]) {
             return;
         }
@@ -258,6 +308,67 @@ typedef NS_ENUM(NSInteger, AudioConverterState) {
             error = kMyAudioConverterErr_CannotResumeFromInterruptionError;
             break;
         }
+
+        
+#if YMH
+        //变声开始
+        [self.soundTouch processSamples:sourceBuffer numOfSamples:numberOfFrames];//里面是memcpy 实现的
+
+        int   numSamples = 0;
+        do
+        {
+            numSamples =  [self.soundTouch receiveSamples:sourceBuffer maxSamples:maxnumOfSamples];
+            if(numSamples > 0)
+            {
+                AudioBufferList newfillBufferList = {};
+                newfillBufferList.mNumberBuffers = 1;
+                newfillBufferList.mBuffers[0].mNumberChannels = clientFormat.mChannelsPerFrame;
+                newfillBufferList.mBuffers[0].mDataByteSize = bufferByteSize * sizeof(SInt16);
+                newfillBufferList.mBuffers[0].mData = sourceBuffer;
+
+                error = ExtAudioFileWrite(destinationFile, numSamples, &newfillBufferList);
+                // If we were interrupted in the process of the write call, we must handle the errors appropriately.
+                if (error != noErr) {
+                    if (error == kExtAudioFileError_CodecUnavailableInputConsumed) {
+                        printf("ExtAudioFileWrite kExtAudioFileError_CodecUnavailableInputConsumed error %d\n", (int)error);
+                        
+                        /*
+                         Returned when ExtAudioFileWrite was interrupted. You must stop calling
+                         ExtAudioFileWrite. If the underlying audio converter can resume after an
+                         interruption (see kAudioConverterPropertyCanResumeFromInterruption), you must
+                         wait for an EndInterruption notification from AudioSession, then activate the session
+                         before resuming. In this situation, the buffer you provided to ExtAudioFileWrite was successfully
+                         consumed and you may proceed to the next buffer
+                         */
+                    } else if (error == kExtAudioFileError_CodecUnavailableInputNotConsumed) {
+                        printf("ExtAudioFileWrite kExtAudioFileError_CodecUnavailableInputNotConsumed error %d\n", (int)error);
+                        
+                        /*
+                         Returned when ExtAudioFileWrite was interrupted. You must stop calling
+                         ExtAudioFileWrite. If the underlying audio converter can resume after an
+                         interruption (see kAudioConverterPropertyCanResumeFromInterruption), you must
+                         wait for an EndInterruption notification from AudioSession, then activate the session
+                         before resuming. In this situation, the buffer you provided to ExtAudioFileWrite was not
+                         successfully consumed and you must try to write it again
+                         */
+                        
+                        // seek back to last offset before last read so we can try again after the interruption
+                        sourceFrameOffset -= numberOfFrames;
+                        if (![self checkError:ExtAudioFileSeek(sourceFile, sourceFrameOffset) withErrorString:@"ExtAudioFileSeek failed!"]) {
+                            return;
+                        }
+                    } else {
+                        [self checkError:error withErrorString:@"ExtAudioFileWrite failed!"];
+                        return;
+                    }
+                }
+            }
+        } while (numSamples != 0);
+        
+        continue;
+#endif
+//        continue;
+        //哈哈哈
         
         error = ExtAudioFileWrite(destinationFile, numberOfFrames, &fillBufferList);
         // If we were interrupted in the process of the write call, we must handle the errors appropriately.
@@ -297,10 +408,70 @@ typedef NS_ENUM(NSInteger, AudioConverterState) {
         }
     }
     
+    
+    //需要 Flush
+#if YMH
+    [self.soundTouch flush];
+    int   numSamples = 0;
+    do
+    {
+        numSamples =  [self.soundTouch receiveSamples:sourceBuffer maxSamples:maxnumOfSamples];
+        if(numSamples > 0)
+        {
+            AudioBufferList newfillBufferList0 = {};
+            newfillBufferList0.mNumberBuffers = 1;
+            newfillBufferList0.mBuffers[0].mNumberChannels =  clientFormat.mChannelsPerFrame;
+            newfillBufferList0.mBuffers[0].mDataByteSize = bufferByteSize * sizeof(SInt16);//bufferByteSize * sizeof(float);
+            newfillBufferList0.mBuffers[0].mData = sourceBuffer;
+
+            error = ExtAudioFileWrite(destinationFile,  numSamples, &newfillBufferList0);
+            // If we were interrupted in the process of the write call, we must handle the errors appropriately.
+            if (error != noErr) {
+                if (error == kExtAudioFileError_CodecUnavailableInputConsumed) {
+                    printf("ExtAudioFileWrite kExtAudioFileError_CodecUnavailableInputConsumed error %d\n", (int)error);
+                    
+                    /*
+                     Returned when ExtAudioFileWrite was interrupted. You must stop calling
+                     ExtAudioFileWrite. If the underlying audio converter can resume after an
+                     interruption (see kAudioConverterPropertyCanResumeFromInterruption), you must
+                     wait for an EndInterruption notification from AudioSession, then activate the session
+                     before resuming. In this situation, the buffer you provided to ExtAudioFileWrite was successfully
+                     consumed and you may proceed to the next buffer
+                     */
+                } else if (error == kExtAudioFileError_CodecUnavailableInputNotConsumed) {
+                    printf("ExtAudioFileWrite kExtAudioFileError_CodecUnavailableInputNotConsumed error %d\n", (int)error);
+                    
+                    /*
+                     Returned when ExtAudioFileWrite was interrupted. You must stop calling
+                     ExtAudioFileWrite. If the underlying audio converter can resume after an
+                     interruption (see kAudioConverterPropertyCanResumeFromInterruption), you must
+                     wait for an EndInterruption notification from AudioSession, then activate the session
+                     before resuming. In this situation, the buffer you provided to ExtAudioFileWrite was not
+                     successfully consumed and you must try to write it again
+                     */
+                    
+                    // seek back to last offset before last read so we can try again after the interruption
+//                    sourceFrameOffset -= numberOfFrames;
+                    if (![self checkError:ExtAudioFileSeek(sourceFile, sourceFrameOffset) withErrorString:@"ExtAudioFileSeek failed!"]) {
+                        return;
+                    }
+                } else {
+                    [self checkError:error withErrorString:@"ExtAudioFileWrite failed!"];
+                    return;
+                }
+            }
+            
+        }
+    } while (numSamples != 0);
+    
+    ///
+#endif
+
+    free(sourceBuffer);
     // Cleanup
-    if (destinationFile) { ExtAudioFileDispose(destinationFile); }
-    if (sourceFile) { ExtAudioFileDispose(sourceFile); }
-    if (converter) { AudioConverterDispose(converter); }
+    if (destinationFile) { error = ExtAudioFileDispose(destinationFile); }
+    if (sourceFile) { error = ExtAudioFileDispose(sourceFile); }
+//    if (converter) { error = AudioConverterDispose(converter); }
     
     // Set the state to done.
     dispatch_sync(self.queue, ^{

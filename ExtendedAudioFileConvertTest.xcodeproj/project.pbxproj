@@ -7,6 +7,30 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2F31CA56211C58A700E72AA3 /* libSoundTouch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F31CA4A211C58A700E72AA3 /* libSoundTouch.a */; };
+		2F31CA57211C58A700E72AA3 /* libSoundTouch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F31CA51211C58A700E72AA3 /* libSoundTouch.a */; };
+		2F31CA59211C5A2100E72AA3 /* ssjs.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2F31CA58211C5A2100E72AA3 /* ssjs.mp3 */; };
+		2F73D38521199D4E00B92733 /* QNXSoundTouch.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2F73D37521199D4E00B92733 /* QNXSoundTouch.mm */; };
+		2F73D3892119CBB500B92733 /* x.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2F73D3882119CBB500B92733 /* x.mp3 */; };
+		2F73D3B1211AFB2B00B92733 /* GCDWebServerResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F73D38F211AFB2B00B92733 /* GCDWebServerResponse.m */; };
+		2F73D3B2211AFB2B00B92733 /* GCDWebServerRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F73D392211AFB2B00B92733 /* GCDWebServerRequest.m */; };
+		2F73D3B3211AFB2B00B92733 /* GCDWebServerFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F73D395211AFB2B00B92733 /* GCDWebServerFunctions.m */; };
+		2F73D3B4211AFB2B00B92733 /* GCDWebServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F73D396211AFB2B00B92733 /* GCDWebServer.m */; };
+		2F73D3B5211AFB2B00B92733 /* GCDWebServerConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F73D397211AFB2B00B92733 /* GCDWebServerConnection.m */; };
+		2F73D3B6211AFB2B00B92733 /* GCDWebServerErrorResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F73D39C211AFB2B00B92733 /* GCDWebServerErrorResponse.m */; };
+		2F73D3B7211AFB2B00B92733 /* GCDWebServerFileResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F73D39E211AFB2B00B92733 /* GCDWebServerFileResponse.m */; };
+		2F73D3B8211AFB2B00B92733 /* GCDWebServerDataResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F73D39F211AFB2B00B92733 /* GCDWebServerDataResponse.m */; };
+		2F73D3B9211AFB2B00B92733 /* GCDWebServerStreamedResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F73D3A1211AFB2B00B92733 /* GCDWebServerStreamedResponse.m */; };
+		2F73D3BA211AFB2B00B92733 /* GCDWebServerURLEncodedFormRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F73D3A6211AFB2B00B92733 /* GCDWebServerURLEncodedFormRequest.m */; };
+		2F73D3BB211AFB2B00B92733 /* GCDWebServerMultiPartFormRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F73D3A7211AFB2B00B92733 /* GCDWebServerMultiPartFormRequest.m */; };
+		2F73D3BC211AFB2B00B92733 /* GCDWebServerDataRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F73D3A8211AFB2B00B92733 /* GCDWebServerDataRequest.m */; };
+		2F73D3BD211AFB2B00B92733 /* GCDWebServerFileRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F73D3A9211AFB2B00B92733 /* GCDWebServerFileRequest.m */; };
+		2F73D3BE211AFB2B00B92733 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 2F73D3AB211AFB2B00B92733 /* LICENSE */; };
+		2F73D3BF211AFB2B00B92733 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 2F73D3AC211AFB2B00B92733 /* README.md */; };
+		2F73D3C0211AFB2B00B92733 /* GCDWebUploader.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2F73D3AE211AFB2B00B92733 /* GCDWebUploader.bundle */; };
+		2F73D3C1211AFB2B00B92733 /* GCDWebUploader.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F73D3B0211AFB2B00B92733 /* GCDWebUploader.m */; };
+		2F73D3C5211B062400B92733 /* wlh.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2F73D3C4211B062400B92733 /* wlh.mp3 */; };
+		2F73D3C7211B405F00B92733 /* w.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2F73D3C6211B405E00B92733 /* w.mp3 */; };
 		4208354A1D5D8A8600C2E3C4 /* sourcePCM.aif in Resources */ = {isa = PBXBuildFile; fileRef = 420835491D5D8A8600C2E3C4 /* sourcePCM.aif */; };
 		424CA40A1D5D19CB00336134 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 424CA4091D5D19CB00336134 /* main.m */; };
 		424CA40D1D5D19CB00336134 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 424CA40C1D5D19CB00336134 /* AppDelegate.m */; };
@@ -18,6 +42,57 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2F31CA49211C58A700E72AA3 /* FIFOSampleBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FIFOSampleBuffer.h; sourceTree = "<group>"; };
+		2F31CA4A211C58A700E72AA3 /* libSoundTouch.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libSoundTouch.a; sourceTree = "<group>"; };
+		2F31CA4B211C58A700E72AA3 /* STTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STTypes.h; sourceTree = "<group>"; };
+		2F31CA4C211C58A700E72AA3 /* BPMDetect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPMDetect.h; sourceTree = "<group>"; };
+		2F31CA4D211C58A700E72AA3 /* SoundTouch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundTouch.h; sourceTree = "<group>"; };
+		2F31CA4E211C58A700E72AA3 /* FIFOSamplePipe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FIFOSamplePipe.h; sourceTree = "<group>"; };
+		2F31CA50211C58A700E72AA3 /* FIFOSampleBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FIFOSampleBuffer.h; sourceTree = "<group>"; };
+		2F31CA51211C58A700E72AA3 /* libSoundTouch.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libSoundTouch.a; sourceTree = "<group>"; };
+		2F31CA52211C58A700E72AA3 /* STTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STTypes.h; sourceTree = "<group>"; };
+		2F31CA53211C58A700E72AA3 /* BPMDetect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BPMDetect.h; sourceTree = "<group>"; };
+		2F31CA54211C58A700E72AA3 /* SoundTouch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundTouch.h; sourceTree = "<group>"; };
+		2F31CA55211C58A700E72AA3 /* FIFOSamplePipe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FIFOSamplePipe.h; sourceTree = "<group>"; };
+		2F31CA58211C5A2100E72AA3 /* ssjs.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = ssjs.mp3; sourceTree = "<group>"; };
+		2F73D37521199D4E00B92733 /* QNXSoundTouch.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = QNXSoundTouch.mm; sourceTree = "<group>"; };
+		2F73D37D21199D4E00B92733 /* QNXSoundTouch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QNXSoundTouch.h; sourceTree = "<group>"; };
+		2F73D3882119CBB500B92733 /* x.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = x.mp3; sourceTree = "<group>"; };
+		2F73D38D211AFB2B00B92733 /* GCDWebServerFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDWebServerFunctions.h; sourceTree = "<group>"; };
+		2F73D38E211AFB2B00B92733 /* GCDWebServerPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDWebServerPrivate.h; sourceTree = "<group>"; };
+		2F73D38F211AFB2B00B92733 /* GCDWebServerResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDWebServerResponse.m; sourceTree = "<group>"; };
+		2F73D390211AFB2B00B92733 /* GCDWebServerConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDWebServerConnection.h; sourceTree = "<group>"; };
+		2F73D391211AFB2B00B92733 /* GCDWebServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDWebServer.h; sourceTree = "<group>"; };
+		2F73D392211AFB2B00B92733 /* GCDWebServerRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDWebServerRequest.m; sourceTree = "<group>"; };
+		2F73D393211AFB2B00B92733 /* GCDWebServerHTTPStatusCodes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDWebServerHTTPStatusCodes.h; sourceTree = "<group>"; };
+		2F73D394211AFB2B00B92733 /* GCDWebServerResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDWebServerResponse.h; sourceTree = "<group>"; };
+		2F73D395211AFB2B00B92733 /* GCDWebServerFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDWebServerFunctions.m; sourceTree = "<group>"; };
+		2F73D396211AFB2B00B92733 /* GCDWebServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDWebServer.m; sourceTree = "<group>"; };
+		2F73D397211AFB2B00B92733 /* GCDWebServerConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDWebServerConnection.m; sourceTree = "<group>"; };
+		2F73D398211AFB2B00B92733 /* GCDWebServerRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDWebServerRequest.h; sourceTree = "<group>"; };
+		2F73D39A211AFB2B00B92733 /* GCDWebServerFileResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDWebServerFileResponse.h; sourceTree = "<group>"; };
+		2F73D39B211AFB2B00B92733 /* GCDWebServerStreamedResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDWebServerStreamedResponse.h; sourceTree = "<group>"; };
+		2F73D39C211AFB2B00B92733 /* GCDWebServerErrorResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDWebServerErrorResponse.m; sourceTree = "<group>"; };
+		2F73D39D211AFB2B00B92733 /* GCDWebServerDataResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDWebServerDataResponse.h; sourceTree = "<group>"; };
+		2F73D39E211AFB2B00B92733 /* GCDWebServerFileResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDWebServerFileResponse.m; sourceTree = "<group>"; };
+		2F73D39F211AFB2B00B92733 /* GCDWebServerDataResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDWebServerDataResponse.m; sourceTree = "<group>"; };
+		2F73D3A0211AFB2B00B92733 /* GCDWebServerErrorResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDWebServerErrorResponse.h; sourceTree = "<group>"; };
+		2F73D3A1211AFB2B00B92733 /* GCDWebServerStreamedResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDWebServerStreamedResponse.m; sourceTree = "<group>"; };
+		2F73D3A3211AFB2B00B92733 /* GCDWebServerDataRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDWebServerDataRequest.h; sourceTree = "<group>"; };
+		2F73D3A4211AFB2B00B92733 /* GCDWebServerMultiPartFormRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDWebServerMultiPartFormRequest.h; sourceTree = "<group>"; };
+		2F73D3A5211AFB2B00B92733 /* GCDWebServerFileRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDWebServerFileRequest.h; sourceTree = "<group>"; };
+		2F73D3A6211AFB2B00B92733 /* GCDWebServerURLEncodedFormRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDWebServerURLEncodedFormRequest.m; sourceTree = "<group>"; };
+		2F73D3A7211AFB2B00B92733 /* GCDWebServerMultiPartFormRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDWebServerMultiPartFormRequest.m; sourceTree = "<group>"; };
+		2F73D3A8211AFB2B00B92733 /* GCDWebServerDataRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDWebServerDataRequest.m; sourceTree = "<group>"; };
+		2F73D3A9211AFB2B00B92733 /* GCDWebServerFileRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDWebServerFileRequest.m; sourceTree = "<group>"; };
+		2F73D3AA211AFB2B00B92733 /* GCDWebServerURLEncodedFormRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDWebServerURLEncodedFormRequest.h; sourceTree = "<group>"; };
+		2F73D3AB211AFB2B00B92733 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		2F73D3AC211AFB2B00B92733 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		2F73D3AE211AFB2B00B92733 /* GCDWebUploader.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = GCDWebUploader.bundle; sourceTree = "<group>"; };
+		2F73D3AF211AFB2B00B92733 /* GCDWebUploader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDWebUploader.h; sourceTree = "<group>"; };
+		2F73D3B0211AFB2B00B92733 /* GCDWebUploader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDWebUploader.m; sourceTree = "<group>"; };
+		2F73D3C4211B062400B92733 /* wlh.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = wlh.mp3; sourceTree = "<group>"; };
+		2F73D3C6211B405E00B92733 /* w.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = w.mp3; sourceTree = "<group>"; };
 		420835491D5D8A8600C2E3C4 /* sourcePCM.aif */ = {isa = PBXFileReference; lastKnownFileType = file; path = sourcePCM.aif; sourceTree = "<group>"; };
 		4208354D1D5D949900C2E3C4 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		424CA4051D5D19CB00336134 /* ExtendedAudioFileConvertTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExtendedAudioFileConvertTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -39,18 +114,159 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2F31CA56211C58A700E72AA3 /* libSoundTouch.a in Frameworks */,
+				2F31CA57211C58A700E72AA3 /* libSoundTouch.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2F31C979211BE03B00E72AA3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		2F31CA48211C58A700E72AA3 /* Debug */ = {
+			isa = PBXGroup;
+			children = (
+				2F31CA49211C58A700E72AA3 /* FIFOSampleBuffer.h */,
+				2F31CA4A211C58A700E72AA3 /* libSoundTouch.a */,
+				2F31CA4B211C58A700E72AA3 /* STTypes.h */,
+				2F31CA4C211C58A700E72AA3 /* BPMDetect.h */,
+				2F31CA4D211C58A700E72AA3 /* SoundTouch.h */,
+				2F31CA4E211C58A700E72AA3 /* FIFOSamplePipe.h */,
+			);
+			path = Debug;
+			sourceTree = "<group>";
+		};
+		2F31CA4F211C58A700E72AA3 /* Release */ = {
+			isa = PBXGroup;
+			children = (
+				2F31CA50211C58A700E72AA3 /* FIFOSampleBuffer.h */,
+				2F31CA51211C58A700E72AA3 /* libSoundTouch.a */,
+				2F31CA52211C58A700E72AA3 /* STTypes.h */,
+				2F31CA53211C58A700E72AA3 /* BPMDetect.h */,
+				2F31CA54211C58A700E72AA3 /* SoundTouch.h */,
+				2F31CA55211C58A700E72AA3 /* FIFOSamplePipe.h */,
+			);
+			path = Release;
+			sourceTree = "<group>";
+		};
+		2F73D37321199D4E00B92733 /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				2F73D37421199D4E00B92733 /* SoundTouch */,
+			);
+			path = lib;
+			sourceTree = "<group>";
+		};
+		2F73D37421199D4E00B92733 /* SoundTouch */ = {
+			isa = PBXGroup;
+			children = (
+				2F73D37D21199D4E00B92733 /* QNXSoundTouch.h */,
+				2F73D37521199D4E00B92733 /* QNXSoundTouch.mm */,
+				2F31CA48211C58A700E72AA3 /* Debug */,
+				2F31CA4F211C58A700E72AA3 /* Release */,
+			);
+			path = SoundTouch;
+			sourceTree = "<group>";
+		};
+		2F73D38A211AFB2B00B92733 /* GCDWebServer */ = {
+			isa = PBXGroup;
+			children = (
+				2F73D38B211AFB2B00B92733 /* GCDWebServer */,
+				2F73D3AB211AFB2B00B92733 /* LICENSE */,
+				2F73D3AC211AFB2B00B92733 /* README.md */,
+				2F73D3AD211AFB2B00B92733 /* GCDWebUploader */,
+			);
+			path = GCDWebServer;
+			sourceTree = "<group>";
+		};
+		2F73D38B211AFB2B00B92733 /* GCDWebServer */ = {
+			isa = PBXGroup;
+			children = (
+				2F73D38C211AFB2B00B92733 /* Core */,
+				2F73D399211AFB2B00B92733 /* Responses */,
+				2F73D3A2211AFB2B00B92733 /* Requests */,
+			);
+			path = GCDWebServer;
+			sourceTree = "<group>";
+		};
+		2F73D38C211AFB2B00B92733 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				2F73D38D211AFB2B00B92733 /* GCDWebServerFunctions.h */,
+				2F73D38E211AFB2B00B92733 /* GCDWebServerPrivate.h */,
+				2F73D38F211AFB2B00B92733 /* GCDWebServerResponse.m */,
+				2F73D390211AFB2B00B92733 /* GCDWebServerConnection.h */,
+				2F73D391211AFB2B00B92733 /* GCDWebServer.h */,
+				2F73D392211AFB2B00B92733 /* GCDWebServerRequest.m */,
+				2F73D393211AFB2B00B92733 /* GCDWebServerHTTPStatusCodes.h */,
+				2F73D394211AFB2B00B92733 /* GCDWebServerResponse.h */,
+				2F73D395211AFB2B00B92733 /* GCDWebServerFunctions.m */,
+				2F73D396211AFB2B00B92733 /* GCDWebServer.m */,
+				2F73D397211AFB2B00B92733 /* GCDWebServerConnection.m */,
+				2F73D398211AFB2B00B92733 /* GCDWebServerRequest.h */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		2F73D399211AFB2B00B92733 /* Responses */ = {
+			isa = PBXGroup;
+			children = (
+				2F73D39A211AFB2B00B92733 /* GCDWebServerFileResponse.h */,
+				2F73D39B211AFB2B00B92733 /* GCDWebServerStreamedResponse.h */,
+				2F73D39C211AFB2B00B92733 /* GCDWebServerErrorResponse.m */,
+				2F73D39D211AFB2B00B92733 /* GCDWebServerDataResponse.h */,
+				2F73D39E211AFB2B00B92733 /* GCDWebServerFileResponse.m */,
+				2F73D39F211AFB2B00B92733 /* GCDWebServerDataResponse.m */,
+				2F73D3A0211AFB2B00B92733 /* GCDWebServerErrorResponse.h */,
+				2F73D3A1211AFB2B00B92733 /* GCDWebServerStreamedResponse.m */,
+			);
+			path = Responses;
+			sourceTree = "<group>";
+		};
+		2F73D3A2211AFB2B00B92733 /* Requests */ = {
+			isa = PBXGroup;
+			children = (
+				2F73D3A3211AFB2B00B92733 /* GCDWebServerDataRequest.h */,
+				2F73D3A4211AFB2B00B92733 /* GCDWebServerMultiPartFormRequest.h */,
+				2F73D3A5211AFB2B00B92733 /* GCDWebServerFileRequest.h */,
+				2F73D3A6211AFB2B00B92733 /* GCDWebServerURLEncodedFormRequest.m */,
+				2F73D3A7211AFB2B00B92733 /* GCDWebServerMultiPartFormRequest.m */,
+				2F73D3A8211AFB2B00B92733 /* GCDWebServerDataRequest.m */,
+				2F73D3A9211AFB2B00B92733 /* GCDWebServerFileRequest.m */,
+				2F73D3AA211AFB2B00B92733 /* GCDWebServerURLEncodedFormRequest.h */,
+			);
+			path = Requests;
+			sourceTree = "<group>";
+		};
+		2F73D3AD211AFB2B00B92733 /* GCDWebUploader */ = {
+			isa = PBXGroup;
+			children = (
+				2F73D3AE211AFB2B00B92733 /* GCDWebUploader.bundle */,
+				2F73D3AF211AFB2B00B92733 /* GCDWebUploader.h */,
+				2F73D3B0211AFB2B00B92733 /* GCDWebUploader.m */,
+			);
+			path = GCDWebUploader;
+			sourceTree = "<group>";
+		};
 		424CA3FA1D5D196D00336134 = {
 			isa = PBXGroup;
 			children = (
+				2F31CA58211C5A2100E72AA3 /* ssjs.mp3 */,
+				2F73D3C6211B405E00B92733 /* w.mp3 */,
+				2F73D3C4211B062400B92733 /* wlh.mp3 */,
+				2F73D38A211AFB2B00B92733 /* GCDWebServer */,
+				2F73D3882119CBB500B92733 /* x.mp3 */,
+				2F73D37321199D4E00B92733 /* lib */,
 				4208354D1D5D949900C2E3C4 /* README.md */,
 				424CA4071D5D19CB00336134 /* ExtendedAudioFileConvertTest */,
 				424CA4061D5D19CB00336134 /* Products */,
+				2F31C979211BE03B00E72AA3 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -119,6 +335,7 @@
 				TargetAttributes = {
 					424CA4041D5D19CB00336134 = {
 						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = 67F7C7DY8T;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -146,8 +363,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2F73D3C5211B062400B92733 /* wlh.mp3 in Resources */,
+				2F73D3BE211AFB2B00B92733 /* LICENSE in Resources */,
 				4208354A1D5D8A8600C2E3C4 /* sourcePCM.aif in Resources */,
 				424CA4181D5D19CB00336134 /* LaunchScreen.storyboard in Resources */,
+				2F73D3C7211B405F00B92733 /* w.mp3 in Resources */,
+				2F73D3BF211AFB2B00B92733 /* README.md in Resources */,
+				2F73D3892119CBB500B92733 /* x.mp3 in Resources */,
+				2F73D3C0211AFB2B00B92733 /* GCDWebUploader.bundle in Resources */,
+				2F31CA59211C5A2100E72AA3 /* ssjs.mp3 in Resources */,
 				424CA4151D5D19CB00336134 /* Assets.xcassets in Resources */,
 				424CA4131D5D19CB00336134 /* Main.storyboard in Resources */,
 			);
@@ -161,9 +385,24 @@
 			buildActionMask = 2147483647;
 			files = (
 				424CA4101D5D19CB00336134 /* ViewController.m in Sources */,
+				2F73D3B8211AFB2B00B92733 /* GCDWebServerDataResponse.m in Sources */,
 				424CA40D1D5D19CB00336134 /* AppDelegate.m in Sources */,
+				2F73D3B5211AFB2B00B92733 /* GCDWebServerConnection.m in Sources */,
+				2F73D3B9211AFB2B00B92733 /* GCDWebServerStreamedResponse.m in Sources */,
 				424CA40A1D5D19CB00336134 /* main.m in Sources */,
 				424CA41F1D5D1BD600336134 /* ExtendedAudioFileConvertOperation.m in Sources */,
+				2F73D3C1211AFB2B00B92733 /* GCDWebUploader.m in Sources */,
+				2F73D3BA211AFB2B00B92733 /* GCDWebServerURLEncodedFormRequest.m in Sources */,
+				2F73D38521199D4E00B92733 /* QNXSoundTouch.mm in Sources */,
+				2F73D3B4211AFB2B00B92733 /* GCDWebServer.m in Sources */,
+				2F73D3B7211AFB2B00B92733 /* GCDWebServerFileResponse.m in Sources */,
+				2F73D3BB211AFB2B00B92733 /* GCDWebServerMultiPartFormRequest.m in Sources */,
+				2F73D3BC211AFB2B00B92733 /* GCDWebServerDataRequest.m in Sources */,
+				2F73D3B2211AFB2B00B92733 /* GCDWebServerRequest.m in Sources */,
+				2F73D3BD211AFB2B00B92733 /* GCDWebServerFileRequest.m in Sources */,
+				2F73D3B3211AFB2B00B92733 /* GCDWebServerFunctions.m in Sources */,
+				2F73D3B1211AFB2B00B92733 /* GCDWebServerResponse.m in Sources */,
+				2F73D3B6211AFB2B00B92733 /* GCDWebServerErrorResponse.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -226,7 +465,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 67F7C7DY8T;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -243,12 +482,18 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/../soundtouch-master-ea30a2028758ce38aa1e0da88de74846a66ad1aa/include\"";
 				INFOPLIST_FILE = ExtendedAudioFileConvertTest/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/lib/SoundTouch/Release",
+					"$(PROJECT_DIR)/lib/SoundTouch/Debug",
+				);
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.example.apple-samplecode.ExtendedAudioConverterFileConvertTest";
+				PRODUCT_BUNDLE_IDENTIFIER = com.iqiyi.toutiao.yang;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -280,7 +525,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 67F7C7DY8T;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -291,11 +536,17 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/../soundtouch-master-ea30a2028758ce38aa1e0da88de74846a66ad1aa/include\"";
 				INFOPLIST_FILE = ExtendedAudioFileConvertTest/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/lib/SoundTouch/Release",
+					"$(PROJECT_DIR)/lib/SoundTouch/Debug",
+				);
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.example.apple-samplecode.ExtendedAudioConverterFileConvertTest";
+				PRODUCT_BUNDLE_IDENTIFIER = com.iqiyi.toutiao.yang;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";

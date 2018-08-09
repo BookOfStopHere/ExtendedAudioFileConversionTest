@@ -13,8 +13,8 @@
 
 @interface ExtendedAudioFileConvertOperation : NSOperation
 
-- (instancetype)initWithSourceURL:(NSURL *)sourceURL destinationURL:(NSURL *)destinationURL sampleRate:(Float64)sampleRate outputFormat:(AudioFormatID)outputFormat;
-
+- (instancetype)initWithSourceURL:(NSURL *)sourceURL destinationURL:(NSURL *)destinationURL sampleRate:(Float64)sampleRate outputFormat:(AudioFormatID)outputFormat ;
+@property ( nonatomic, assign) float xrate;
 @property (readonly, nonatomic, strong) NSURL *sourceURL;
 
 @property (readonly, nonatomic, strong) NSURL *destinationURL;
