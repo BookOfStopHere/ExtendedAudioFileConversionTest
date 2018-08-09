@@ -145,7 +145,7 @@
                                     </button>
                                 </subviews>
                             </stackView>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="xnc-58-1K0">
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="2" translatesAutoresizingMaskIntoConstraints="NO" id="xnc-58-1K0">
                                 <rect key="frame" x="57" y="535" width="261" height="51"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="261" id="EKl-w8-fpI"/>
