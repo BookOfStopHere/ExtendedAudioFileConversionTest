@@ -162,6 +162,21 @@
                                     <action selector="selectRate:" destination="9kq-3M-rVx" eventType="valueChanged" id="oAb-Eh-EXY"/>
                                 </connections>
                             </segmentedControl>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="XZR-24-aSa">
+                                <rect key="frame" x="35" y="595" width="305" height="68"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="305" id="tdd-SG-AAo"/>
+                                </constraints>
+                                <segments>
+                                    <segment title="1"/>
+                                    <segment title="2"/>
+                                    <segment title="3"/>
+                                    <segment title="4"/>
+                                </segments>
+                                <connections>
+                                    <action selector="selectMusic:" destination="9kq-3M-rVx" eventType="valueChanged" id="gC4-rJ-MvY"/>
+                                </connections>
+                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -169,8 +184,11 @@
                             <constraint firstItem="aF1-BC-cSb" firstAttribute="trailing" secondItem="eSU-T8-LV4" secondAttribute="trailingMargin" id="FxZ-0f-dGC"/>
                             <constraint firstItem="xnc-58-1K0" firstAttribute="centerX" secondItem="eSU-T8-LV4" secondAttribute="centerX" id="OJj-oF-1a7"/>
                             <constraint firstItem="aF1-BC-cSb" firstAttribute="leading" secondItem="eSU-T8-LV4" secondAttribute="leadingMargin" id="PQm-oa-p1y"/>
+                            <constraint firstItem="XZR-24-aSa" firstAttribute="top" secondItem="xnc-58-1K0" secondAttribute="bottom" constant="10" id="Rvb-V0-e7s"/>
+                            <constraint firstItem="rba-hM-Cuo" firstAttribute="top" secondItem="XZR-24-aSa" secondAttribute="bottom" constant="5" id="UeI-Nn-Grc"/>
                             <constraint firstItem="aF1-BC-cSb" firstAttribute="top" secondItem="Z4w-Bb-XTl" secondAttribute="bottom" constant="8" symbolic="YES" id="h89-5T-WuW"/>
                             <constraint firstItem="rba-hM-Cuo" firstAttribute="top" secondItem="xnc-58-1K0" secondAttribute="bottom" constant="82" id="pXQ-g9-dMY"/>
+                            <constraint firstItem="XZR-24-aSa" firstAttribute="centerX" secondItem="eSU-T8-LV4" secondAttribute="centerX" id="wfi-w3-uOq"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="ExtAudioFile Convert" id="oVH-ct-zYn"/>

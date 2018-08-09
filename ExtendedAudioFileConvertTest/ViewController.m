@@ -103,6 +103,41 @@
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:AVAudioSessionInterruptionNotification object:[AVAudioSession sharedInstance]];
 }
+
+
+
+
+- (IBAction)selectMusic:(UISegmentedControl *)sender {
+    
+    switch (sender.selectedSegmentIndex) {
+        case 0:
+        {
+            NSString *sourcePath = [[NSBundle mainBundle] pathForResource:@"ssjs" ofType:@"mp3"];
+            self.sourceURL = [NSURL fileURLWithPath:sourcePath];
+        }
+            break;
+        case 1:
+        {
+            NSString *sourcePath = [[NSBundle mainBundle] pathForResource:@"cd" ofType:@"mp3"];
+            self.sourceURL = [NSURL fileURLWithPath:sourcePath];
+        }
+            break;
+        case 2:
+        {
+            NSString *sourcePath = [[NSBundle mainBundle] pathForResource:@"wlh" ofType:@"mp3"];
+            self.sourceURL = [NSURL fileURLWithPath:sourcePath];
+        }
+            break;
+        case 3:
+        {
+            NSString *sourcePath = [[NSBundle mainBundle] pathForResource:@"x" ofType:@"mp3"];
+            self.sourceURL = [NSURL fileURLWithPath:sourcePath];
+        }
+            break;
+    }
+}
+
+
 - (IBAction)selectRate:(UISegmentedControl *)sender {
     
     switch (sender.selectedSegmentIndex) {

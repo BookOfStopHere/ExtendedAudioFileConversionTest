@@ -10,6 +10,7 @@
 		2F31CA56211C58A700E72AA3 /* libSoundTouch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F31CA4A211C58A700E72AA3 /* libSoundTouch.a */; };
 		2F31CA57211C58A700E72AA3 /* libSoundTouch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F31CA51211C58A700E72AA3 /* libSoundTouch.a */; };
 		2F31CA59211C5A2100E72AA3 /* ssjs.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2F31CA58211C5A2100E72AA3 /* ssjs.mp3 */; };
+		2F31CA5B211C5CAB00E72AA3 /* cd.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2F31CA5A211C5CAB00E72AA3 /* cd.mp3 */; };
 		2F73D38521199D4E00B92733 /* QNXSoundTouch.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2F73D37521199D4E00B92733 /* QNXSoundTouch.mm */; };
 		2F73D3892119CBB500B92733 /* x.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2F73D3882119CBB500B92733 /* x.mp3 */; };
 		2F73D3B1211AFB2B00B92733 /* GCDWebServerResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F73D38F211AFB2B00B92733 /* GCDWebServerResponse.m */; };
@@ -55,6 +56,7 @@
 		2F31CA54211C58A700E72AA3 /* SoundTouch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundTouch.h; sourceTree = "<group>"; };
 		2F31CA55211C58A700E72AA3 /* FIFOSamplePipe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FIFOSamplePipe.h; sourceTree = "<group>"; };
 		2F31CA58211C5A2100E72AA3 /* ssjs.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = ssjs.mp3; sourceTree = "<group>"; };
+		2F31CA5A211C5CAB00E72AA3 /* cd.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = cd.mp3; sourceTree = "<group>"; };
 		2F73D37521199D4E00B92733 /* QNXSoundTouch.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = QNXSoundTouch.mm; sourceTree = "<group>"; };
 		2F73D37D21199D4E00B92733 /* QNXSoundTouch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QNXSoundTouch.h; sourceTree = "<group>"; };
 		2F73D3882119CBB500B92733 /* x.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = x.mp3; sourceTree = "<group>"; };
@@ -257,6 +259,7 @@
 		424CA3FA1D5D196D00336134 = {
 			isa = PBXGroup;
 			children = (
+				2F31CA5A211C5CAB00E72AA3 /* cd.mp3 */,
 				2F31CA58211C5A2100E72AA3 /* ssjs.mp3 */,
 				2F73D3C6211B405E00B92733 /* w.mp3 */,
 				2F73D3C4211B062400B92733 /* wlh.mp3 */,
@@ -366,6 +369,7 @@
 				2F73D3C5211B062400B92733 /* wlh.mp3 in Resources */,
 				2F73D3BE211AFB2B00B92733 /* LICENSE in Resources */,
 				4208354A1D5D8A8600C2E3C4 /* sourcePCM.aif in Resources */,
+				2F31CA5B211C5CAB00E72AA3 /* cd.mp3 in Resources */,
 				424CA4181D5D19CB00336134 /* LaunchScreen.storyboard in Resources */,
 				2F73D3C7211B405F00B92733 /* w.mp3 in Resources */,
 				2F73D3BF211AFB2B00B92733 /* README.md in Resources */,
